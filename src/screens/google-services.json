@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1076015766668",
+    "firebase_url": "https://dishaapp-2a219-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "dishaapp-2a219",
+    "storage_bucket": "dishaapp-2a219.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076015766668:android:a301a3858364f061162fa9",
+        "android_client_info": {
+          "package_name": "com.dishaapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3gul8QqizYhYICbPk5KgSpfXQqbzfc6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
