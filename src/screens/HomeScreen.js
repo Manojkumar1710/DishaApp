@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from "react";
+=======
+ import React, { useState, useEffect, useRef } from 'react';
+>>>>>>> fd73130b212244174c24625327f5029392dce163
 import {
   View,
   Text,
@@ -45,6 +49,7 @@ const HomeScreen = ({ navigation }) => {
   }, []);
 
   const loadUser = async () => {
+<<<<<<< HEAD
     try {
       const data = await AsyncStorage.getItem("disha_user");
       if (data) setUser(JSON.parse(data));
@@ -70,6 +75,53 @@ const HomeScreen = ({ navigation }) => {
         ]),
       ).start();
     }, delay);
+=======
+    const userData = await AsyncStorage.getItem('disha_user');
+    if (userData) setUser(JSON.parse(userData));
+  };
+
+  // Shake Detection using Accelerometer
+  const setupShakeDetection = () => {
+    try {
+      setUpdateIntervalForType(SensorTypes.accelerometer, 100);
+      accelerometer.subscribe(({ x, y, z }) => {
+        const magnitude = Math.sqrt(x * x + y * y + z * z);
+        const now = Date.now();
+        // Detect shake: magnitude > 18 and at least 200ms since last shake
+        if (magnitude > 18 && now - lastShakeRef.current > 200) {
+          lastShakeRef.current = now;
+          shakeCountRef.current += 1;
+          setShakeCount(shakeCountRef.current);
+
+          // Reset shake count after 2 seconds of no shaking
+          if (shakeTimerRef.current) clearTimeout(shakeTimerRef.current);
+          shakeTimerRef.current = setTimeout(() => {
+            shakeCountRef.current = 0;
+            setShakeCount(0);
+          }, 2000);
+
+          // Trigger SOS after 5 shakes
+          if (shakeCountRef.current >= 5) {
+            shakeCountRef.current = 0;
+            setShakeCount(0);
+            triggerSOS('shake');
+          }
+        }
+      });
+    } catch (error) {
+      console.log('Accelerometer not available:', error);
+    }
+  };
+
+  // SOS Trigger
+  const triggerSOS = (type = 'button') => {
+    if (sosActive) return;
+    setSosActive(true);
+    Vibration.vibrate([500, 500, 500, 500, 500]);
+
+    navigation.navigate('SOSAlert', { triggerType: type, user });
+    setTimeout(() => setSosActive(false), 5000);
+>>>>>>> fd73130b212244174c24625327f5029392dce163
   };
 
   const handleSOSPress = () => {
@@ -87,6 +139,7 @@ const HomeScreen = ({ navigation }) => {
     );
   };
 
+<<<<<<< HEAD
   const triggerSOS = (type = "button") => {
     if (sosActive) return;
     setSosActive(true);
@@ -121,6 +174,15 @@ const HomeScreen = ({ navigation }) => {
     { icon: "📍", label: "Nearby", active: false, screen: "Nearby" },
     { icon: "📋", label: "Complaint", active: false, screen: "Complaint" },
     { icon: "⚙️", label: "Admin", active: false, screen: "Admin" },
+=======
+  const quickActions = [
+    { icon: '👥', label: 'Emergency\nContacts', screen: 'Contacts', color: '#4CAF50' },
+    { icon: '📍', label: 'Track My\nTravel', screen: 'Track', color: '#2196F3' },
+    { icon: '🏥', label: 'Nearby\nServices', screen: 'Nearby', color: '#FF9800' },
+    { icon: '📋', label: 'File\nComplaint', screen: 'Complaint', color: '#9C27B0' },
+    { icon: '📞', label: 'Helplines', screen: 'Helpline', color: '#F44336' },
+    { icon: '🩸', label: 'Blood\nBanks', screen: 'Nearby', color: '#E91E63' },
+>>>>>>> fd73130b212244174c24625327f5029392dce163
   ];
 
   return (
@@ -332,7 +394,59 @@ const HomeScreen = ({ navigation }) => {
           </TouchableOpacity>
         ))}
       </View>
+<<<<<<< HEAD
     </View>
+=======
+
+      {/* Emergency Dial Buttons */}
+      <View style={styles.dialSection}>
+        <Text style={styles.sectionTitle}>Emergency Dial</Text>
+        <View style={styles.dialRow}>
+          <TouchableOpacity
+            style={[styles.dialBtn, { backgroundColor: '#F44336' }]}
+            onPress={() => Linking.openURL('tel:100')}
+          >
+            <Text style={styles.dialNumber}>100</Text>
+            <Text style={styles.dialLabel}>Police</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.dialBtn, { backgroundColor: '#4CAF50' }]}
+            onPress={() => Linking.openURL('tel:108')}
+          >
+            <Text style={styles.dialNumber}>108</Text>
+            <Text style={styles.dialLabel}>Ambulance</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.dialBtn, { backgroundColor: '#2196F3' }]}
+            onPress={() => Linking.openURL('tel:112')}
+          >
+            <Text style={styles.dialNumber}>112</Text>
+            <Text style={styles.dialLabel}>Emergency</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.dialBtn, { backgroundColor: '#FF9800' }]}
+            onPress={() => Linking.openURL('tel:181')}
+          >
+            <Text style={styles.dialNumber}>181</Text>
+            <Text style={styles.dialLabel}>Women Help</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      {/* Safety Tips */}
+      <View style={styles.tipsSection}>
+        <Text style={styles.sectionTitle}>Safety Tip 💡</Text>
+        <View style={styles.tipCard}>
+          <Text style={styles.tipText}>
+            Always inform a trusted person about your whereabouts. Use the 
+            "Track My Travel" feature when traveling alone at night.
+          </Text>
+        </View>
+      </View>
+
+      <View style={{ height: 20 }} />
+    </ScrollView>
+>>>>>>> fd73130b212244174c24625327f5029392dce163
   );
 };
 
