@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
-=======
- import React, { useState } from 'react';
->>>>>>> fd73130b212244174c24625327f5029392dce163
 import {
   View,
   Text,
@@ -29,7 +25,6 @@ const RegisterScreen = ({ navigation }) => {
     bloodGroup: "",
   });
 
-<<<<<<< HEAD
   const [loading, setLoading] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
@@ -37,10 +32,6 @@ const RegisterScreen = ({ navigation }) => {
 
   const genderOptions = ["Female", "Male", "Other"];
   const bloodGroups = ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"];
-=======
-  const genderOptions = ['Female', 'Male', 'Other'];
-  const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
->>>>>>> fd73130b212244174c24625327f5029392dce163
 
   // Step 1 - Validate form and send OTP
   const handleSendOTP = async () => {
@@ -52,7 +43,6 @@ const RegisterScreen = ({ navigation }) => {
       Alert.alert("Error", "Please enter a valid 10-digit phone number");
       return;
     }
-<<<<<<< HEAD
 
     setLoading(true);
     try {
@@ -85,7 +75,7 @@ const RegisterScreen = ({ navigation }) => {
       // Save to AsyncStorage locally
       await AsyncStorage.setItem("disha_user", JSON.stringify(form));
 
-      // Save to Firebase Database (now secured by auth rules)
+      // Save to Firebase Database
       await database()
         .ref(`/Users/${form.phone}`)
         .set({
@@ -103,14 +93,6 @@ const RegisterScreen = ({ navigation }) => {
         "Registration Successful! 🎉",
         `Welcome ${form.name}! Your data is securely stored.`,
         [{ text: "Proceed", onPress: () => navigation.replace("MainApp") }],
-=======
-    try {
-      await AsyncStorage.setItem('disha_user', JSON.stringify(form));
-      Alert.alert(
-        'Registration Successful! 🎉',
-        `Welcome ${form.name}! You are now registered with Disha Safety App.`,
-        [{ text: 'Proceed', onPress: () => navigation.replace('MainApp') }]
->>>>>>> fd73130b212244174c24625327f5029392dce163
       );
     } catch (error) {
       setLoading(false);
@@ -271,7 +253,6 @@ const RegisterScreen = ({ navigation }) => {
                   </Text>
                 </Text>
 
-<<<<<<< HEAD
                 <TextInput
                   style={styles.otpInput}
                   placeholder="• • • • • •"
@@ -311,12 +292,6 @@ const RegisterScreen = ({ navigation }) => {
               </View>
             </>
           )}
-=======
-          {/* Register Button */}
-          <TouchableOpacity style={styles.registerBtn} onPress={handleRegister}>
-            <Text style={styles.registerBtnText}>REGISTER NOW 🛡️</Text>
-          </TouchableOpacity>
->>>>>>> fd73130b212244174c24625327f5029392dce163
 
           <Text style={styles.disclaimer}>
             🔒 Your data is encrypted and stored securely in Firebase. Only you
@@ -399,7 +374,6 @@ const styles = StyleSheet.create({
     borderLeftWidth: 4,
     borderLeftColor: "#8B0000",
   },
-<<<<<<< HEAD
   privacyTitle: {
     fontSize: 15,
     fontWeight: "bold",
@@ -407,27 +381,12 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   privacyText: { fontSize: 13, color: "#555", lineHeight: 22 },
-=======
-  optionText: {
-    fontSize: 13,
-    color: '#555',
-  },
-  optionTextActive: {
-    color: '#fff',
-    fontWeight: '600',
-  },
->>>>>>> fd73130b212244174c24625327f5029392dce163
   registerBtn: {
     backgroundColor: "#8B0000",
     borderRadius: 12,
     paddingVertical: 16,
-<<<<<<< HEAD
     alignItems: "center",
     marginTop: 20,
-=======
-    alignItems: 'center',
-    marginTop: 30,
->>>>>>> fd73130b212244174c24625327f5029392dce163
     elevation: 4,
     shadowColor: "#8B0000",
     shadowOffset: { width: 0, height: 4 },
